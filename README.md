@@ -1,3 +1,3 @@
 # activehome-user-emulator
 
-Emulate the user behaviour
+Emulate a user behaviour
