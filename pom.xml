@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.activehome</groupId>
-    <artifactId>org.activehome.user.emulator</artifactId>
+    <groupId>org.active-home</groupId>
+    <artifactId>org.active-home.user.emulator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Active Home :: User :: Emulator</name>
     <description>Emulate the user behaviour</description>
-    <url>https://active-home.org</url>
+    <url>http://active-home.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,9 +29,9 @@
     </organization>
 
     <scm>
-        <connection>scm:git:git@github.com:jackybourgeois/activehome-user-emulator.git</connection>
-        <developerConnection>scm:git:git@github.com:jackybourgeois/activehome-user-emulator.git</developerConnection>
-        <url>http://github.com/jackybourgeois/activehome-user-emulator.git</url>
+        <connection>scm:git:git@github.com:jackybourgeois/active-home-user-emulator.git</connection>
+        <developerConnection>scm:git:git@github.com:jackybourgeois/active-home-user-emulator.git</developerConnection>
+        <url>http://github.com/jackybourgeois/active-home-user-emulator.git</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -59,39 +59,90 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.activehome</groupId>
-            <artifactId>org.activehome.user</artifactId>
+            <groupId>org.active-home</groupId>
+            <artifactId>org.active-home.user</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.activehome</groupId>
-            <artifactId>org.activehome.context</artifactId>
+            <groupId>org.active-home</groupId>
+            <artifactId>org.active-home.context</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.activehome</groupId>
-            <artifactId>org.activehome.mysql</artifactId>
+            <groupId>org.active-home</groupId>
+            <artifactId>org.active-home.mysql</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.activehome</groupId>
-            <artifactId>org.activehome.io</artifactId>
+            <groupId>org.active-home</groupId>
+            <artifactId>org.active-home.io</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.activehome</groupId>
-            <artifactId>org.activehome.test</artifactId>
+            <groupId>org.active-home</groupId>
+            <artifactId>org.active-home.test</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.activehome.energy</groupId>
-            <artifactId>org.activehome.energy.library</artifactId>
+            <groupId>org.active-home.energy</groupId>
+            <artifactId>org.active-home.energy.library</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.3</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -117,19 +168,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
                 <version>1.4</version>
@@ -150,7 +188,7 @@
                         <phase>process-sources</phase>
                         <configuration>
                             <licenseName>gpl_v3</licenseName>
-                            <organizationName>org.activehome</organizationName>
+                            <organizationName>Active Home Project</organizationName>
                             <inceptionYear>2016</inceptionYear>
                             <roots>
                                 <root>src/main/java</root>
@@ -174,13 +212,9 @@
     </build>
 
     <distributionManagement>
-        <repository>
-            <id>active-home-internal</id>
-            <url>sftp://active-home.org/maven/repo/internal</url>
-        </repository>
         <snapshotRepository>
-            <id>active-home-snapshots</id>
-            <url>sftp://active-home.org/maven/repo/snapshots</url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -188,14 +222,6 @@
         <repository>
             <id>kevoree-oss</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>active-home-snapshots</id>
-            <url>http://active-home.org:8080/maven/snapshots/</url>
-        </repository>
-        <repository>
-            <id>active-home-internal</id>
-            <url>http://active-home.org:8080/maven/internal/</url>
         </repository>
     </repositories>
 

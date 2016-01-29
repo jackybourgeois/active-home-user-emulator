@@ -6,7 +6,7 @@ package org.activehome.user.emulator;
  * $Id:$
  * $HeadURL:$
  * %%
- * Copyright (C) 2016 org.activehome
+ * Copyright (C) 2016 Active Home Project
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -73,17 +73,7 @@ public class EUser extends User {
 
     @Param(defaultValue = "Emulate a user behavior.")
     private String description;
-
-    @Param(defaultValue = "/activehome-user-emulator/master/docs/euser.png")
-    private String img;
-
-    @Param(defaultValue = "/activehome-user-emulator/master/docs/euser.md")
-    private String doc;
-
-    @Param(defaultValue = "/activehome-user-emulator/master/docs/demo.kevs")
-    private String demoScript;
-
-    @Param(defaultValue = "/activehome-user-emulator")
+    @Param(defaultValue = "/active-home-user-emulator")
     private String src;
 
     private final static long HORIZON = DAY;
